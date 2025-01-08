@@ -8,7 +8,10 @@
       :id="item.id"
       :is_open="menu_open"
       :ref="(el) => Object.defineProperty(item, '_el', { value: el, writable: true })"
-      @click="toggle_menu(item, $event)" />
+      @click="toggle_menu(item, $event)"
+      v-bind="item.props || {}"
+      v-on="item.listeners || {}"
+    />
   </div>
 </template>
 
