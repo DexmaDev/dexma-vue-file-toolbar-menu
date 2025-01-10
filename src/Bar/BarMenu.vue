@@ -1,58 +1,53 @@
 <template>
-  <div class="bar-menu">
-    <div class="extended-hover-zone"></div>
-    <div class="bar-menu-items" :style="{
+    <div class="bar-menu">
+        <div class="extended-hover-zone"></div>
+        <div class="bar-menu-items" :style="{
         width: width+'px',
         minWidth: width+'px',
         maxHeight: height+'px',
         overflow: height ? 'auto' : 'visible'
       }"
-      v-focus-on-click
-    >
-      <component v-for="(item, index) in menu"
-      :is="get_component(item.is)"
-      :item="item"
-      :class="item.class"
-      :id="item.id"
-      :key="'menu-'+index"
-      v-bind="item.props || {}"
-      v-on="item.listeners || {}"
-      />
+        >
+            <component v-for="(item, index) in menu"
+                       :is="get_component(item.is)"
+                       :item="item"
+                       :class="item.class"
+                       :id="item.id"
+                       :key="'menu-'+index"
+                       v-bind="item.props || {}"
+                       v-on="item.listeners || {}"
+            />
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 import BarMenuItem from './BarMenuItem.vue'
 import BarMenuSeparator from './BarMenuSeparator.vue'
-import focusOnClick from "../directives/focusOnClick";
 
 export default {
 
-  components: {
-    BarMenuItem,
-    BarMenuSeparator
-  },
-
-  props: {
-    menu: {
-      type: Array,
-      required: true
+    components: {
+        BarMenuItem,
+        BarMenuSeparator,
     },
-    width: Number,
-    height: Number
-  },
 
-  methods: {
-    get_component(is) {
-      if(typeof is == "object") return is;
-      else if(typeof is == "string") return 'bar-menu-'+is;
-      else return 'bar-menu-item';
-    }
-  },
+    props: {
+        menu: {
+            type: Array,
+            required: true,
+        },
+        width: Number,
+        height: Number,
+    },
 
-  directives: {
-    focusOnClick,
-  }
+    methods: {
+        get_component(is) {
+            if (typeof is == 'object') return is
+            else if (typeof is == 'string') return 'bar-menu-' + is
+            else return 'bar-menu-item'
+        },
+    },
+
 }
 </script>
