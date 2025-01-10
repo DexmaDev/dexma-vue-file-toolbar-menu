@@ -1,18 +1,23 @@
 <template>
   <div class="bar-menu">
     <div class="extended-hover-zone"></div>
-    <div class="bar-menu-items" :style="{ 
+    <div class="bar-menu-items" :style="{
         width: width+'px',
         minWidth: width+'px',
         maxHeight: height+'px',
         overflow: height ? 'auto' : 'visible'
-      }">
+      }"
+      v-focus-on-click
+    >
       <component v-for="(item, index) in menu"
       :is="get_component(item.is)"
       :item="item"
       :class="item.class"
       :id="item.id"
-      :key="'menu-'+index" />
+      :key="'menu-'+index"
+      v-bind="item.props || {}"
+      v-on="item.listeners || {}"
+      />
     </div>
   </div>
 </template>
@@ -20,6 +25,7 @@
 <script>
 import BarMenuItem from './BarMenuItem.vue'
 import BarMenuSeparator from './BarMenuSeparator.vue'
+import focusOnClick from "../directives/focusOnClick";
 
 export default {
 
@@ -43,6 +49,10 @@ export default {
       else if(typeof is == "string") return 'bar-menu-'+is;
       else return 'bar-menu-item';
     }
+  },
+
+  directives: {
+    focusOnClick,
   }
 }
 </script>

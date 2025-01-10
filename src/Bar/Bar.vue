@@ -52,6 +52,11 @@ export default {
     toggle_menu(item, event) {
       event.stopPropagation();
       const touch = event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents;
+
+      if (item.prevent_menu_close && this.menu_open) {
+        return;
+      }
+
       this.menu_open = item._el.is_menu && !item.disabled ? (touch ? true : !this.menu_open) : false;
     },
     get_component(is) {
