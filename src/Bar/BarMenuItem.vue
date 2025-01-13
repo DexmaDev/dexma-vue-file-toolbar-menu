@@ -6,10 +6,8 @@
          :title="item.title"
          :style="{ height: item.height+'px' }">
 
-        <template v-if="item.icon">
-            <component v-if="typeof item.icon == 'object'" class="icon" :is="item.icon"></component>
-            <span v-else class="material-icons icon">{{ item.icon }}</span>
-        </template>
+        <BarIcon :icon="item.icon" />
+
         <span v-if="item.emoji" class="emoji">{{ get_emoji(item.emoji) }}</span>
         <span v-if="item.text" class="label">{{ item.text }}</span>
         <span v-if="item.html" class="label" v-html="item.html"></span>
@@ -33,11 +31,13 @@
 import { defineAsyncComponent } from 'vue'
 import emoji from 'node-emoji/lib/emoji.json'
 import hotkey_manager from './imports/bar-hotkey-manager.js'
+import BarIcon from '@/Bar/BarIcon.vue'
 
 export default {
     mixins: [hotkey_manager],
 
     components: {
+        BarIcon,
         BarMenu: defineAsyncComponent(() => import('./BarMenu.vue')), // because of circular reference
     },
 

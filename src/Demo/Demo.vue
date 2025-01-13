@@ -192,11 +192,11 @@ export default {
                                     {
                                         is: BaseInput,
                                         title: 'LineSpacing',
-                                        listeners:{
+                                        listeners: {
                                             update: (event) => {
                                                 console.log('update', event)
                                             },
-                                        }
+                                        },
                                     },
                                 ],
                             },
