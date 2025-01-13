@@ -8,8 +8,8 @@
 <script setup>
 defineProps({
     icon: {
-        type: String,
-        required: true,
+        type: [String, Object, Boolean],
+        required: false,
     },
     color: {
         type: String,

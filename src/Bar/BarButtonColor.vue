@@ -6,7 +6,7 @@
 
         <div class="menu" :class="item.menu_class" :id="item.menu_id"
              @click="(e) => item.stay_open ? e.stopPropagation() : true">
-            <component v-model="color" :is="item.type || 'compact'" />
+            <component v-model="selectedColor" :is="item.type || 'compact'" />
         </div>
 
     </div>
@@ -25,7 +25,7 @@ export default {
     }, {}),
     data() {
         return {
-            color: this.item.color,
+            selectedColor: this.item.color,
         }
     },
 
@@ -34,7 +34,7 @@ export default {
             return true
         },
         css_color() {
-            return this.color.hex8 || this.color || '#000'
+            return this.selectedColor.hex8 || this.selectedColor || '#000'
         },
     },
 
@@ -46,12 +46,12 @@ export default {
 
     watch: {
         'item.color'(item_color) {
-            if (this.color != item_color) {
+            if (this.selectedColor !== item_color) {
                 this._prevent_next_color_update = true
-                this.color = item_color
+                this.selectedColor = item_color
             }
         },
-        color(new_color) {
+        selectedColor(new_color) {
             if (this.item.update_color && !this._prevent_next_color_update) {
                 this.item.update_color(new_color)
             }
