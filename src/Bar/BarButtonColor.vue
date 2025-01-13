@@ -15,9 +15,10 @@
 <script>
 import BarButtonGeneric from './BarButtonGeneric.vue'
 import { components as VueColorComponents } from '@ckpack/vue-color'
+import BarIcon from './BarIcon.vue'
 
 export default {
-    mixins: [BarButtonGeneric],
+    mixins: [BarButtonGeneric, BarIcon],
     components: VueColorComponents.reduce((acc, cur) => {
         acc[cur.name] = cur
         return acc

@@ -31,7 +31,7 @@
 import { defineAsyncComponent } from 'vue'
 import emoji from 'node-emoji/lib/emoji.json'
 import hotkey_manager from './imports/bar-hotkey-manager.js'
-import BarIcon from '@/Bar/BarIcon.vue'
+import BarIcon from './BarIcon.vue'
 
 export default {
     mixins: [hotkey_manager],
